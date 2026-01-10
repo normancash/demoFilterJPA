@@ -3,11 +3,11 @@ package model;
 
 import jakarta.persistence.Entity;
 
-
 @Entity
-public class Autor extends BaseEntity {
+public class Usuario extends BaseEntity {
     private String nombre;
     private String apellido;
+
 
     public String getNombre() {
         return nombre;

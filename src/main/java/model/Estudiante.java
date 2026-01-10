@@ -1,6 +1,8 @@
 package model;
 
-import config.IRestrictiva;
+import config.RestrictionType;
+import config.Restrictiva;
+import config.RestrictivaUsuario;
 import jakarta.persistence.Entity;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
@@ -11,7 +13,13 @@ import jakarta.persistence.Table;
         ,query="select e from Estudiante e"
 )
 @Table(name="Estudiante")
-public class Estudiante  extends BaseEntity implements IRestrictiva {
+@Restrictiva(campo="restrictiva",value="false")
+@RestrictivaUsuario(
+        campo="restrictiva",
+        tipo = RestrictionType.BOOLEAN,
+        valor = "false"
+)
+public class Estudiante  extends BaseEntity  {
 
     private String nombre;
     private String apellido;
