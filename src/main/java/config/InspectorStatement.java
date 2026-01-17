@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class InspectorStatement implements StatementInspector {
 
@@ -33,11 +34,10 @@ public class InspectorStatement implements StatementInspector {
             return sql;
         }
 
-        // Construir filtros
         List<String> filtros = new ArrayList<>();
         tablasYAlias.forEach((tabla, filtro) -> filtros.add(filtro.alias()
                 + "." + filtro.campo().nombre() + "=" + filtro.campo().value()));
-        String filtroFinal = "(" + String.join(" AND ", filtros) + ")";
+        String filtroFinal = String.join(" AND ", filtros) ;
 
         // Insertar filtro antes de ORDER BY o OFFSET
         int posOrderBy = lowerSql.indexOf(" order by");
@@ -77,4 +77,6 @@ public class InspectorStatement implements StatementInspector {
         }
         return resultado;
     }
+
+
 }
